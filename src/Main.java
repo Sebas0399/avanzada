@@ -35,7 +35,7 @@ public class Main {
         }
         return ret;
     }
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
 
         //System.out.println("Hello world!");
 
@@ -48,6 +48,42 @@ public class Main {
 
 
 
+    }
+    public static void main(String[] args) {
+        Function<String,String>fnTransformar=txt->{
+            StringBuilder sb= new StringBuilder();
+            for(char c:txt.toCharArray()){
+                if(c!=' '){
+                    c=(char)(c+1);
+                }
+                sb.append(c);
+            }
+
+
+            return sb.toString();
+        };
+        Function<String,Map<String,Integer>>fncontar=txt->{
+            String[] palabras=txt.split(" ");
+            Map<String,Integer>cc=new HashMap<>();
+            for(String key:palabras){
+                if (cc.containsKey(key)){
+                    Integer val=cc.get(key);
+                    cc.put(key,val+1);
+                }
+                else{
+                    cc.put(key,1);
+                }
+            }
+
+            return cc;
+        };
+        Function<Map<String,Integer>,List<ConteoPalabra>>fnVector=count->{
+            List<ConteoPalabra>ret=new ArrayList<>();
+            for(var entryL:count.entrySet()){
+                ret.add(new ConteoPalabra(entryL.getKey(),entryL.getValue()));
+            }
+            return ret;
+        };
     }
 
 }
