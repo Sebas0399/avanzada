@@ -62,7 +62,7 @@ public class Main {
 
             return sb.toString();
         };
-        Function<String,Map<String,Integer>>fncontar=txt->{
+        Function<String,Map<String,Integer>>fnContar=txt->{
             String[] palabras=txt.split(" ");
             Map<String,Integer>cc=new HashMap<>();
             for(String key:palabras){
@@ -79,11 +79,13 @@ public class Main {
         };
         Function<Map<String,Integer>,List<ConteoPalabra>>fnVector=count->{
             List<ConteoPalabra>ret=new ArrayList<>();
-            for(var entryL:count.entrySet()){
-                ret.add(new ConteoPalabra(entryL.getKey(),entryL.getValue()));
-            }
+            count.forEach((k,v)->{
+                ret.add(new ConteoPalabra(k,v));
+            });
+
             return ret;
         };
+
     }
 
 }
